@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using MauiPocketTrainer.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace MauiPocketTrainer
 {
@@ -7,6 +9,11 @@ namespace MauiPocketTrainer
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
+
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "training.db");
+            builder.Services.AddDbContext<AppDbContext>(options =>
+            options.UseSqlite($"Filename={dbPath}"));
+
             builder
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
