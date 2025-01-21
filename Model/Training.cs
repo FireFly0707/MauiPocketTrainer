@@ -19,5 +19,10 @@ namespace MauiPocketTrainer.Model
 
         public List<ExerciseTraining> ExerciseTrainings { get; set; }
 
+        public int GetDuration()
+        {
+            return (int)(EndTime - StartTime).TotalSeconds;
+        }
+
     }
 }
