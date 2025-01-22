@@ -12,7 +12,7 @@ namespace MauiPocketTrainer
 
             string dbPath = Path.Combine(FileSystem.AppDataDirectory, "training.db");
             builder.Services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlite($"Filename={dbPath}"));
+                options.UseSqlite($"Filename={dbPath}"));
 
             builder
                 .UseMauiApp<App>()
@@ -23,10 +23,24 @@ namespace MauiPocketTrainer
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
-            return builder.Build();
+            var app = builder.Build();
+
+            // Initialize the database
+            InitializeDatabase(app);
+
+            return app;
+        }
+
+        private static void InitializeDatabase(MauiApp app)
+        {
+            using (var scope = app.Services.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                dbContext.Database.Migrate();
+            }
         }
     }
 }
