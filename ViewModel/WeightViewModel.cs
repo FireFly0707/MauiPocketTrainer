@@ -11,14 +11,16 @@ namespace MauiPocketTrainer.ViewModels
     {
         private readonly AppDbContext _dbContext;
 
+        
         public ObservableCollection<Weight> Weights { get; } = new();
 
         [ObservableProperty]
         private string statusMessage;
 
-        public WeightViewModel(AppDbContext dbContext)
+        public WeightViewModel()
         {
-            _dbContext = dbContext;
+            Database db = Database.GetInstance();
+            _dbContext = db.context;
             LoadWeightsCommand = new AsyncRelayCommand(LoadWeightsAsync);
         }
 

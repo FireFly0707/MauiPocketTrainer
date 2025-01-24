@@ -4,7 +4,6 @@
              xmlns:vm="clr-namespace:MauiPocketTrainer.ViewModels"
              x:Class="MauiPocketTrainer.MainPage">
 
-    
 
     <ScrollView>
         <VerticalStackLayout Padding="20">
