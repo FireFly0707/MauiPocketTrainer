@@ -1,25 +1,32 @@
-﻿namespace MauiPocketTrainer
+﻿using MauiPocketTrainer.ViewModels;
+
+namespace MauiPocketTrainer
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
-
         public MainPage()
         {
             InitializeComponent();
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        protected override void OnAppearing()
         {
-            count++;
+            base.OnAppearing();
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
+            // Uzyskanie WeightViewModel z DI poprzez MauiApp
+            var viewModel = (WeightViewModel)Application.Current!.Handler.MauiContext.Services.GetService(typeof(WeightViewModel));
+
+            if (viewModel != null)
+            {
+                BindingContext = viewModel;
+            }
             else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            {
+                // Obsługa przypadku, kiedy viewModel nie jest dostępny
+                Console.WriteLine("WeightViewModel not found in DI container.");
+            }
         }
     }
+
 
 }

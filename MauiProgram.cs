@@ -1,4 +1,6 @@
 ﻿using MauiPocketTrainer.Data;
+using MauiPocketTrainer.Model;
+using MauiPocketTrainer.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -14,6 +16,8 @@ namespace MauiPocketTrainer
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlite($"Filename={dbPath}"));
 
+            builder.Services.AddTransient<WeightViewModel>();
+
             builder
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
@@ -27,9 +31,11 @@ namespace MauiPocketTrainer
 #endif
 
             var app = builder.Build();
+            
 
             // Initialize the database
             InitializeDatabase(app);
+            //seedData(app.Services.GetRequiredService<AppDbContext>());
 
             return app;
         }
@@ -39,8 +45,14 @@ namespace MauiPocketTrainer
             using (var scope = app.Services.CreateScope())
             {
                 var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                
                 dbContext.Database.Migrate();
             }
+        }
+        private static void seedData(AppDbContext dbContext)
+        {
+            dbContext.Weights.Add(new Weight { Date = DateTime.Now, Value = 80.0 });
+            dbContext.SaveChanges();
         }
     }
 }
