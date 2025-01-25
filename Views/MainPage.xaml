@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiPocketTrainer.Views.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="10">
+            <Label
+                Text="MauiPocketTrainer"
+                FontSize="24"
+                HorizontalOptions="Center" />
+
+            <Label
+                Text="Witamy w aplikacji MauiPocketTrainer!"
+                FontSize="18"
+                HorizontalOptions="Center" />
+
+            <Label
+                Text="Ta aplikacja pomaga śledzić Twoje treningi i postępy."
+                FontSize="14"
+                HorizontalOptions="Center" />
+
+            <Label
+                Text="Funkcje aplikacji:"
+                FontSize="18"
+                HorizontalOptions="Start" />
+
+            <Label
+                Text="• Śledzenie ćwiczeń"
+                FontSize="14"
+                HorizontalOptions="Start" />
+
+            <Label
+                Text="• Planowanie treningów"
+                FontSize="14"
+                HorizontalOptions="Start" />
+
+            <Label
+                Text="• Monitorowanie wagi"
+                FontSize="14"
+                HorizontalOptions="Start" />
+
+            <Label
+                Text="• Analiza postępów"
+                FontSize="14"
+                HorizontalOptions="Start" />
+
+            <Label
+                Text="Dziękujemy za korzystanie z naszej aplikacji!"
+                FontSize="14"
+                HorizontalOptions="Center" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

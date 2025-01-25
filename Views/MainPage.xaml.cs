@@ -1,13 +1,12 @@
 ﻿using MauiPocketTrainer.ViewModels;
 
-namespace MauiPocketTrainer
+namespace MauiPocketTrainer.Views
 {
     public partial class MainPage : ContentPage
     {
         public MainPage()
         {
             InitializeComponent();
-            BindingContext = new WeightViewModel();
         }
 
         //protected override void OnAppearing()

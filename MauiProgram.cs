@@ -1,8 +1,10 @@
 ﻿using MauiPocketTrainer.Data;
 using MauiPocketTrainer.Model;
 using MauiPocketTrainer.ViewModels;
+using MauiPocketTrainer.Views;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+
 
 namespace MauiPocketTrainer
 {
@@ -16,7 +18,10 @@ namespace MauiPocketTrainer
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlite($"Filename={dbPath}"));
 
-            builder.Services.AddTransient<WeightViewModel>();
+            builder.Services.AddSingleton<MainPage>();
+           
+            builder.Services.AddSingleton<WeightViewModel>();
+            builder.Services.AddSingleton<WeightPage>();
 
             builder
                 .UseMauiApp<App>()
