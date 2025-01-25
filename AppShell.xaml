@@ -5,13 +5,17 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MauiPocketTrainer"
     xmlns:views="clr-namespace:MauiPocketTrainer.Views"
-    Shell.FlyoutBehavior="Disabled"
     Title="MauiPocketTrainer">
 
-    <ShellContent Title="Home"
-                 Icon="home.png"
-                 ContentTemplate="{DataTemplate views:MainPage}" />
-    <ShellContent Title="Weight"
-                 Icon="weight.png"
-                 ContentTemplate="{DataTemplate views:WeightPage}" />
+    <!-- Strona główna -->
+    <FlyoutItem Title="Home" Icon="home.png">
+        <ShellContent Title="Home" 
+                      ContentTemplate="{DataTemplate views:MainPage}" />
+    </FlyoutItem>
+
+    <!-- Strona z wagą -->
+    <FlyoutItem Title="Weight" Icon="weight.png">
+        <ShellContent Title="Weight" 
+                      ContentTemplate="{DataTemplate views:WeightPage}" />
+    </FlyoutItem>
 </Shell>
